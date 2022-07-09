@@ -15,7 +15,7 @@ public class Cell {
         setId(id);
     }
 
-    public void interactNeighbour(ArrayList<Cell> neighbours) {
+    public void interactNeighbours(ArrayList<Cell> neighbours) {
 
     }
 
@@ -32,7 +32,7 @@ public class Cell {
         this.y = Math.max(y,0);
     }
 
-    public void setId(int id) { //probably needs something to check if ID already exists and if yes reject
+    public void setId(int id) {
         this.id = Math.max(id, 0);
     }
 
