@@ -1,5 +1,6 @@
+package Simulation;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Cell {
@@ -14,6 +15,7 @@ public class Cell {
         setY(y);
         setId(id);
     }
+
 
     public void interactNeighbours(ArrayList<Cell> neighbours) {
 
