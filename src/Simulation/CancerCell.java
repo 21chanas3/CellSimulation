@@ -23,13 +23,13 @@ public class CancerCell extends Cell{
             else if (c instanceof ImmuneCell) { immuneCount++;}
         }
         if(tissueCount > immuneCount) {
-            if(replaceNeighbourCell(1,2,1,neighbours)) {return;} //If replacement of a tissue cell is successful, end action;
+            if(replaceNeighbourCell(1,0,1,neighbours)) {return;} //If replacement of a tissue cell is successful, end action;
         }
 
         //Immune Cell Combat!
-        ArrayList<Cell> immuneCellNeighbours = scanNeighboursOfType(neighbours,3);
+        ArrayList<Cell> immuneCellNeighbours = scanNeighboursOfType(neighbours,4);
         if(immuneCellNeighbours.size() > 0) {
-            int rng = (int) Math.round(Math.random() * immuneCellNeighbours.size());
+            int rng = (int) Math.round(Math.random() * (immuneCellNeighbours.size() - 1));
             Cell defendingCell = immuneCellNeighbours.get(rng);
             if(defendingCell.isExhausted()) {
                 neighbours.remove(Mapper.indexFromCoord(defendingCell.getCoord()));

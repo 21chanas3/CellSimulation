@@ -28,9 +28,12 @@ public class Cell {
         ArrayList<Cell> targetCellsAround = new ArrayList<>();
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                Cell cellBeingChecked = neighbours.get(Mapper.indexFromCoord(this.getX() + i, this.getY() + j));
-                if (cellBeingChecked.getId() == targetId) {
-                    targetCellsAround.add(cellBeingChecked);
+                int index = Mapper.indexFromCoord(this.getX() + i, this.getY() + j);
+                if(index != -1) {
+                    Cell cellBeingChecked = neighbours.get(index);
+                    if (cellBeingChecked.getId() == targetId) {
+                        targetCellsAround.add(cellBeingChecked);
+                    }
                 }
             }
         }
@@ -39,19 +42,18 @@ public class Cell {
 
     public boolean replaceNeighbourCell(int targetId, int newCellID, double chance, ArrayList<Cell> neighbours) {
         ArrayList<Cell> targetCellsAround = scanNeighboursOfType(neighbours, targetId);
-
-        if(Math.random() <= 1 - chance) {
+        /*if(Math.random() <= 1 - chance) {
             return false;
-        }
+        }*/
         if (targetCellsAround.size() > 0) {
-            int rng = (int) Math.round(Math.random() * targetCellsAround.size());
-            Cell cellToReplace = targetCellsAround.get(rng);
-            neighbours.remove(rng);
+            int rng = (int) Math.round(Math.random() * (targetCellsAround.size() - 1));
+            Pair cellToReplaceCoord = targetCellsAround.get(rng).getCoord();
+            neighbours.remove(Mapper.indexFromCoord(cellToReplaceCoord));
             switch (newCellID) {
-                case 0 -> neighbours.add(rng, new DeadCell(cellToReplace.getCoord()));
-                case 1 -> neighbours.add(rng, new TissueCell(cellToReplace.getCoord()));
-                case 2 -> neighbours.add(rng, new CancerCell(cellToReplace.getCoord()));
-                case 3 -> neighbours.add(rng, new ImmuneCell(cellToReplace.getCoord()));
+                case 0 -> neighbours.add(Mapper.indexFromCoord(cellToReplaceCoord), new DeadCell(cellToReplaceCoord));
+                case 1 -> neighbours.add(Mapper.indexFromCoord(cellToReplaceCoord), new TissueCell(cellToReplaceCoord));
+                case 2 -> neighbours.add(Mapper.indexFromCoord(cellToReplaceCoord), new CancerCell(cellToReplaceCoord));
+                case 3 -> neighbours.add(Mapper.indexFromCoord(cellToReplaceCoord), new ImmuneCell(cellToReplaceCoord));
                 default -> {
                 }
             }

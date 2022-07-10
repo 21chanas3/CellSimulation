@@ -24,7 +24,7 @@ public class PixelPanel extends JPanel {
         Pair currCoords;
         for(int i = 0; i < width*height; i++){
             currCoords = mapper.coordFromIndex(i);
-            pixels.add(new Pixel(currCoords.getX()*pixelWidth, currCoords.getY()*pixelHeight,pixelWidth, pixelHeight, 0));
+            pixels.add(new Pixel(currCoords.getX()*pixelWidth, currCoords.getY()*pixelHeight,0,pixelWidth, pixelHeight));
         }
     }
 

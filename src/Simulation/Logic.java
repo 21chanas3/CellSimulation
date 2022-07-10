@@ -41,8 +41,8 @@ public class Logic {
      * Calls the interaction method on each cell in the list.
      */
     public void timeStep(){
-        for(Cell c : cellList){
-            c.interactNeighbours(cellList);
+        for (int i = 0; i < cellList.size(); i++) {
+            cellList.get(i).interactNeighbours(cellList);
         }
     }
 

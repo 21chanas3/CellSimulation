@@ -10,7 +10,7 @@ public class Mapper {
     }
 
     public static int indexFromCoord(int x, int y) {
-        if(x >= width || y>= length) {
+        if(x >= width || y>= length || x < 0 || y < 0) {
             return -1;
         } else {
             return width * y + x;
