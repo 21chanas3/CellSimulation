@@ -1,5 +1,7 @@
 package Simulation;
 
+import Util.Pair;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -49,6 +51,8 @@ public class Cell {
     public int getY() {
         return y;
     }
+
+    public Pair getCoord() {return new Pair(this.getX(), this.getY()); }
 
     public int getId() {
         return id;
